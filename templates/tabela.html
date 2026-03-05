@@ -1,12 +1,27 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{% block titulo %}{% endblock %}</title>
-     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
+{% extends "base.html" %}
 
-{% block conteudo %}{% endblock %}
+{% block titulo %}{{ titulo }}{% endblock %}
 
-</body>
-</html>
+{% block conteudo %}
+<a href="/" class="botao">Voltar</a>
+<h2>{{ titulo }}</h2>
+<table>
+    <thead>
+        <tr>
+            {% for coluna in colunas %}
+                <th>{{ coluna }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for linha in dados %}
+        <tr>
+            {% for valor in linha %}
+                <td>{{ valor }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
