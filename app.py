@@ -1,10 +1,14 @@
 from flask import Flask, render_template
 import pandas as pd
+import os
 
 app = Flask(__name__)
 
 def carregar_blocos():
-    df = pd.read_excel("dados.xlsx", header=1)
+
+    caminho = os.path.join(os.path.dirname(__file__), "dados.xlsx")
+
+    df = pd.read_excel(caminho, header=1)
 
     df = df.dropna(how="all")
     df = df.fillna("")
@@ -41,5 +45,5 @@ def mostrar_bloco(numero):
 
 
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=10000)
+    if __name__ == "__main__":
+        app.run()
